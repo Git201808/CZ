@@ -1,0 +1,218 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @*<link href="~/Plugins/bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet" />*@
+    @*<link href="~/Content/css/reset.css" rel="stylesheet" />
+    <link href="~/Content/css/common.css" rel="stylesheet" />*@
+    <link href="~/Content/css/Login.css" rel="stylesheet" />
+</head>
+<body>
+    @*首页logo*@
+    <div class="lg-header"><a class="logo" href="#"></a></div>
+    @*内容区*@
+    <div class="middle-content">
+        @*背景图*@
+        <div cz-rel="cz_1464314390965" id="loginbgshow" style="position: absolute;"><img src="~/Content/images/南方航空背景图.jpg"></div>
+        @*内容区*@
+        <div class="wrap">
+            @*广告区*@
+            <div id="ad-content">
+                <div id="travlstart" class="travlstart"></div>
+
+                <div id="ad-slider" class="viewport" cz-rel="cz_1455590052715">
+                    <ul class="ad-container overview">
+                        <li>
+                            <a href="#" target="_blank">
+                                <img src="~/Content/images/eab1100f2bb9e20c151f372741291840.jpg" alt="南航套票专场">
+                                <div class="ad-info" style="display: none; bottom: -30px;">
+                                    <div class="ad-bg"></div><div class="ad-txt">南航套票专场</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <img src="~/Content/images/b4dd4273c33c6fcecfe45d1bf9192520.jpg" alt="新开航专区">
+                                <div class="ad-info">
+                                    <div class="ad-bg"></div>
+                                    <div class="ad-txt">新开航专区</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @*登陆盒子*@
+            <div id="loginBox_page" class="login">
+                <div class="login-box all ">
+                    <ul class="tab-title">
+                        <li class="left member-login current" data-boxname="memberBox" id="mm">会员登录</li>
+                        <li class="left psw-login" data-boxname="dynamicPswBox" id="dt">动态密码登录</li>
+                    </ul>
+                    <div class="lg-tabcontent" id="memberBox">
+                        <form class="form-box" id="memberLogin" autocomplete="off">
+                            @*用户账号*@
+                            <div class="lg-unit">
+                                <input type="text" autocomplete="off" maxlength="40" data-placeholder="手机号/邮箱/会员号/证件号" value="@ViewBag.UserNuber" class="ipt-valid greyfont" name="userId" id="userId">
+                                <div class="help-txt"></div>
+                            </div>
+                            @*密码*@
+                            <div class="lg-unit">
+                                @*<input type="text" class="greyfont place-hoder" autocomplete="off" name="passWordPH" id="passWordPH" value="密码">*@
+                                <input type="password" class="ipt-valid" maxlength="40" autocomplete="off" name="passWord" value="@ViewBag.Password" id="passWord">
+                                <div class="help-txt"></div>
+                            </div>
+                            @*验证码*@
+                            <div class="lg-unit vcode-unit" id="vcode">
+                                <input type="text" name="verifyCode" id="verifyCode" data-placeholder="验证码" class="greyfont place-holder">
+                                <img src="/Main/CreateValidCodeImage" alt="" width="100" height="38" id="validCodeImg" class="vImg btn-refresh">
+                                <a href="#" class="ico-refresh btn-refresh" onclick="update()"></a>
+                                <div class="help-txt"> </div>
+                            </div>
+                            <div class="forget-psw">
+                                <a href="#" target="_blank" class="btn" id="mem_forgetPsw">忘记密码？</a>
+                            </div>
+                            <div class="lg-msg"></div>
+                            <div class="lg-protocol">
+                                <label for="loginProtocol">
+                                    <input type="checkbox" id="loginProtocol" name="loginProtocol">已阅读并同意<a href="#" target="_blank">《隐私通知》</a>
+                                </label>
+                            </div>
+                            <button type="button" class="btn long-btn disabled login-btn" otype="button" otitle="预订流程-航班选择-会员登录" id="mem_btn_login">登  录</button>
+                        </form>
+                    </div>
+                    @*动态密码*@
+                    <div class="lg-tabcontent hide" id="dynamicPswBox">
+                        <form class="form-box" id="dynamicPswLogin" autocomplete="off">
+                            <div class="lg-unit">
+                                <input type="text" autocomplete="off" maxlength="40" data-placeholder="国内11位手机号或邮箱" data-email="false" value="" class="ipt-valid ipt-disBtn greyfont" name="userId" id="eId">
+                                <div class="help-txt"></div>
+                            </div>
+                            <div class="lg-unit">
+                                <input type="text" class="short greyfont ipt-valid" autocomplete="off" data-placeholder="请输入动态密码" name="vcode" id="vcode">
+                                <div class="btn short-btn disabled" id="dyn_btn_psw">获取动态密码</div>
+                                <div class="help-txt"></div>
+                            </div>
+                            <div class="lg-msg"></div>
+                            <div class="lg-protocol">
+                                <label for="loginProtocol1">
+                                    <input type="checkbox" id="loginProtocol1" name="loginProtocol">
+                                    已阅读并同意
+                                    <a href="#" target="_blank">《隐私通知》</a>
+                                </label>
+                            </div>
+                            <button type="button" class="btn long-btn login-btn disabled" id="dyn_btn_login" otype="button" otitle="预订流程-航班选择-动态密码登录">登  录</button>
+                        </form>
+                    </div>
+                    <div class="exAccount" id="exAccount">
+                        <div>合作账户登录：</div>
+                        <div class="qqlogin disabled" id="qq">QQ</div>
+                        <div class="weixinlogin disabled" id="wx">weixin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dongdun"></div>
+    </div>
+    <div class="zsl-footer footer">
+        <div class="W">
+            <div class="zsl-power">
+                <div class="fl">Copyright(C)1997-2019 中国南方航空股份有限公司 版权所有 粤ICP备05053330号</div>
+                <div class="footerR">
+                    <a href="#" rel="nofollow">关于南航</a> ｜
+                    <a href="#" rel="nofollow">投资者关系</a> ｜
+                    <a href="#" rel="nofollow">预订须知</a> ｜
+                    <a href="#" rel="nofollow">常见问题</a> ｜
+                    <a href="#" rel="nofollow">联系我们</a> |
+                    <a href="#" rel="nofollow">"十分"关爱基金会</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/login.js"></script>
+    <script src="~/Plugins/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#mem_btn_login").click(function () {//登录框点击事件
+                //alert("这是登录框");
+                //window.location.replace("/Main/Main");
+                // window.open("/Main/Main");
+                //===登录逻辑
+                //获取值--获取某一个id下的name的值
+                var UserNuber = $('#memberLogin [name="userId"]').val();//用户
+                var password = $('#memberLogin [name="passWord"]').val();//密码
+                var validCode = $('#memberLogin [name="verifyCode"]').val();//验证码
+                //var UserTypeClass = $('#memberLogin [name="UserTypeClass"]').val();//使用者类型
+                //var rememberMe = $('#memberLogin [name="loginProtocol"]:checked').val();//这里漏了一个#号。以致不能获取到是否记住密码
+
+                //判断是否填写数据
+                if (strValIsNotNull(UserNuber) && strValIsNotNull(password) && strValIsNotNull(validCode)) {//如果页面获取的值不为空，不等于null，也不等于“”;
+                    $.post("/Main/UserLogin",//发送post请求，提交用户及密码，使用post
+                        {
+                            UserNuber: UserNuber,//
+                            password: password,
+                            validCode: validCode,
+                        }, function (msg) {
+                            if (msg == "success") {//接收的结果值
+                                alert("登陆成功");
+                                //跳转到主页面
+                                window.location.href = "/Main/Main";   //本质就是调转页面，其他一切都绕她转
+                            } else {
+                                //Main
+                                if (msg == "userTypeErro") {
+                                    alert('请输入正确会员类型');
+                                }
+                                else if (msg == "passwordErro") {
+                                    alert('请输入正确的账号或密码');
+                                }
+                                else if (msg == "validCodeErro") {
+                                    alert('请输入正确的验证码')
+                                }
+                                else if (msg == "userNorErro") {
+                                    alert('该会员不存在')
+                                }
+                                else {
+                                    alert('登陆失败')
+                                }
+                                //清空密码和验证码
+                                $("#passWord").val("");
+                                $("#validCode").val("");//文本值
+                                //验证码刷新
+                                $("#validCodeImg").click();//显示值
+                            }
+                        });
+                } else {
+                    alert('请填写完整账号信息')
+                }
+            });
+            $("#validCodeImg").click(function () {//验证码点击刷新事件
+                //console.log(11);
+                $(this).prop("src", "/Main/CreateValidCodeImage?t=" + new Date().getTime());//通过请求新的路径更新验证码
+            });
+        });
+        //字符串值不为空，不允许
+        function strValIsNotNull(strVal) {
+            return strVal != undefined && strVal != null && strVal != '';
+        }
+        //点击事件
+        function update() {
+            $("#validCodeImg").prop("src", "/Main/CreateValidCodeImage?t=" + new Date().getTime());//通过请求新的路径更新验证码
+        }
+
+        //回车登录
+        function onreturn() {
+            if (window.event.keyCode == 13) {      //判断是不是回车键
+                $("#mem_btn_login").click();       //触发事件
+            }
+        }
+            //账号密码 samuel.gold@domain.com 18520516149密码也是;
+    </script>
+</body>
+</html>

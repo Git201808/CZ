@@ -1,0 +1,27 @@
+﻿/*公共样式表*/
+/*居中设定*/
+.w {
+    width: 1024px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+/*左浮动*/
+.fl{
+    float:left;
+}
+/*右浮动*/
+.fr{
+    float:right;
+}
+/*清除浮动*/
+.clearFix{
+    clear:both;
+}
+/*隐藏*/
+.hide {
+    display: none;
+}
+
+
+

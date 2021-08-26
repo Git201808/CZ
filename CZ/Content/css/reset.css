@@ -1,0 +1,23 @@
+﻿/*重置样式表*/
+ul, li, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a:link, a:active, a:visited {
+    text-decoration: none
+}
+
+h1, h2, h3, h4, h5, h6, h7, p {
+    margin: 0;
+    padding: 0
+}
+
+img {
+    border: 0;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
